@@ -29,3 +29,4 @@ lib/*.so.*
 lib/*.iobj
 lib/*.ipdb
 lib/*.pdb
+.vs

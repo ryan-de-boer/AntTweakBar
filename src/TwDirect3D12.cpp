@@ -412,8 +412,8 @@ bool CTwGraphDirect3D12::IsDrawing()
 
 void CTwGraphDirect3D12::Restore()
 {
-	if(m_FontResource) m_FontResource->Release();
-	m_Font = NULL;
+//	if(m_FontResource) m_FontResource->Release();
+//	m_Font = NULL;
 }
 
 
