@@ -47,6 +47,8 @@ First, include the AntTweakBar header with your other includes.
 ```C
 TwInit(TW_DIRECT3D8, pD3DDevice); // for Direct3D 8
 TwWindowSize(myWindowWidth, myWindowHeight);
+TwDefine("SHOW_CURSOR"); // If AntTweakBar cursors are needed.
+TwDefine("HIDE_CURSOR"); // If game has cursors and want to use them instead (otherwise they may flash).
 ```
 
 3. Create a tweak bar and add variables
