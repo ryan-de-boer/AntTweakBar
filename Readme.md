@@ -113,6 +113,11 @@ TwTerminate();
 See this for more information:
 https://anttweakbar.sourceforge.io/doc/tools_anttweakbar_howto.html
 
+![Generals Zero Hour DX8.1](examples/Screenshots/DirectX8.1%20Command%20%26%20Conquer%20(TM)%20Generals%20Zero%20Hour%2010_03_2025%2011_22_13%20PM.png)
+Generals Zero Hour DX8.1
+
+![Generals DX9 showing wireframe tweak](examples/Screenshots/DirectX9%20Gernerals%20tweakbars_wireframe.png)
+Generals DX9 showing wireframe tweak
 
 ### Original Readme.txt from AntTweakBar development library follows
 
