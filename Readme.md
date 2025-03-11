@@ -1,6 +1,7 @@
 # Direct3D 8.1 and 12 port of AntTweakBar
 
 # Direct3D 12
+DirectX 12 SDK: Ensure you have the DirectX 12 SDK installed.
 Needs Visual studio 2015 and the Direct3D sdk that comes with it.
 
 There are currently no binaries, you need to compile it yourself.
