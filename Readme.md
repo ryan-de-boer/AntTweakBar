@@ -37,6 +37,11 @@ If you find bugs open issues, or better yet, send pull requests with fixes.
 
 # Direct3D 8.1 port of AntTweakBar
 
+Needs VS2022 and DX8.1 SDK
+Store DX8.1 SDK include and lib folders here: Dependencies\dx81sdk
+https://archive.org/details/dx81sdk_full
+Compile with 32bit configuration.
+
 1. Include
 First, include the AntTweakBar header with your other includes.
 ```C
