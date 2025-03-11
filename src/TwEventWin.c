@@ -15,6 +15,7 @@
 #include <AntTweakBar.h>
 
 #define WIN32_LEAN_AND_MEAN // Exclude rarely-used stuff from Windows headers
+#define POINTER_64 __ptr64
 #include <windows.h>
 
 // Mouse wheel support

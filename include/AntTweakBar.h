@@ -200,6 +200,7 @@ typedef enum ETwGraphAPI
     TW_DIRECT3D11       = 4,
     TW_OPENGL_CORE      = 5,
 	TW_DIRECT3D12		= 6,
+    TW_DIRECT3D8 = 7,
 } TwGraphAPI;
 
 TW_API int      TW_CALL TwInit(TwGraphAPI graphAPI, void *device);

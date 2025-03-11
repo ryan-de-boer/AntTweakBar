@@ -136,6 +136,7 @@ struct CTwMgr
     float               m_KeyPressedTime;
     void *              m_InfoTextObj;
     bool                m_InfoBuildText;
+    bool                m_ShowCursors;
     int                 m_BarInitColorHue;
     int                 FindBar(const char *_Name) const;
     int                 HasAttrib(const char *_Attrib, bool *_HasValue) const;

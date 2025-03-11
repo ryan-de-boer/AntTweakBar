@@ -19,6 +19,8 @@
 #   pragma warning(disable: 4100)   // unreferenced parameter
 #endif // _MSC_VER
 
+#define POINTER_64 __ptr64
+
 // #include <GL/glut.h>
 #include "MiniGLUT.h" // a subset of glut.h needed to compile TwEventGLUT.c
 // note: AntTweakBar.dll does not need to link with GLUT, 

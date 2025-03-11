@@ -17,9 +17,11 @@
 #include "TwOpenGLCore.h"
 #ifdef ANT_WINDOWS
 #   include "TwDirect3D9.h"
+#   include "TwDirect3D8.h"
 #   include "TwDirect3D10.h"
 #   include "TwDirect3D11.h"
 #   include "TwDirect3D12.h"
+#include <functional>
 #   include "resource.h"
 #   ifdef _DEBUG
 #       include <crtdbg.h>
@@ -1795,6 +1797,17 @@ static int TwCreateGraph(ETwGraphAPI _GraphAPI)
             }
         #endif // ANT_WINDOWS
         break;
+    case TW_DIRECT3D8:
+      #ifdef ANT_WINDOWS
+      if (g_TwMgr->m_Device != NULL)
+        g_TwMgr->m_Graph = new CTwGraphDirect3D8;
+      else
+      {
+        g_TwMgr->SetLastError(g_ErrBadDevice);
+        return 0;
+      }
+      #endif // ANT_WINDOWS
+      break;
     case TW_DIRECT3D10:
         #ifdef ANT_WINDOWS
             if( g_TwMgr->m_Device!=NULL )
@@ -2357,7 +2370,8 @@ CTwMgr::CTwMgr(ETwGraphAPI _GraphAPI, void *_Device, int _WndID)
     m_OverlapContent = false;
     m_Terminating = false;
     
-    m_CursorsCreated = false;   
+    m_CursorsCreated = false;
+    m_ShowCursors = true;
     #if defined(ANT_UNIX)
         m_CurrentXDisplay = NULL;
         m_CurrentXWindow = 0;
@@ -4741,6 +4755,15 @@ static inline std::string ErrorPosition(bool _MultiLine, int _Line, int _Column)
 
 int ANT_CALL TwDefine(const char *_Def)
 {
+  if (strstr(_Def, "SHOW_CURSOR"))
+  {
+    g_TwMgr->m_ShowCursors = true;
+  }
+  if (strstr(_Def, "HIDE_CURSOR"))
+  {
+    g_TwMgr->m_ShowCursors = false;
+  }
+
     CTwFPU fpu; // force fpu precision
 
     // hack to scale fonts artificially (for retina display for instance)
@@ -6431,6 +6454,8 @@ void CTwMgr::FreeCursors()
 
 void CTwMgr::SetCursor(CTwMgr::CCursor _Cursor)
 {
+  //Fix for flashing cursors in generals
+  if (m_ShowCursors)
     if( m_CursorsCreated )
     {
         CURSORINFO ci;

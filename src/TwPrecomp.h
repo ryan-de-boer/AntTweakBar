@@ -13,7 +13,7 @@
 
 #if !defined ANT_TW_PRECOMP_INCLUDED
 #define ANT_TW_PRECOMP_INCLUDED
-
+#define POINTER_64 __ptr64
 
 #if defined _MSC_VER
 #   pragma warning(disable: 4514)   // unreferenced inline function has been removed
