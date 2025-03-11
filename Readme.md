@@ -1,5 +1,6 @@
-# Direct3D 12 port of AntTweakBar
+# Direct3D 8.1 and 12 port of AntTweakBar
 
+# Direct3D 12
 Needs Visual studio 2015 and the Direct3D sdk that comes with it.
 
 There are currently no binaries, you need to compile it yourself.
@@ -33,6 +34,74 @@ TwAddVarRW(twBar, "Scale", TW_TYPE_FLOAT, &scale, "group='-Meshes/+Modifiers'");
 ```
 
 If you find bugs open issues, or better yet, send pull requests with fixes.
+
+# Direct3D 8.1 port of AntTweakBar
+
+1. Include
+First, include the AntTweakBar header with your other includes.
+```C
+#include <AntTweakBar.h>
+```
+
+2. Initialize AntTweakBar
+```C
+TwInit(TW_DIRECT3D8, pD3DDevice); // for Direct3D 8
+TwWindowSize(myWindowWidth, myWindowHeight);
+```
+
+3. Create a tweak bar and add variables
+Declare one or more pointers of type TwBar*, and create one or more tweak bars by calling TwNewBar
+
+```C
+TwBar *myBar;
+myBar = TwNewBar("NameOfMyTweakBar");
+Then, you can add variables to your tweak bar(s) by calling TwAddVarRW, TwAddVarRO, TwAddVarCB, or TwAddButton
+
+TwAddVarRW(myBar, "NameOfMyVariable", TW_TYPE_INT32, &myVar, "");
+TwAddVarRW(myBar, "NameOfMyBoolVariable", TW_TYPE_BOOLCPP, &myBoolVar, "");
+```
+
+4. Draw your tweak bar
+Call TwDraw at the end of your main loop to draw your tweak bar(s). It must be called just before the frame buffer is presented (swapped).
+```C
+// main loop
+while( ... )
+{
+    // clear the frame buffer
+    // update view and camera
+    // update your scene
+    // draw your scene
+ 
+    TwDraw();  // draw the tweak bar(s)
+ 
+    // present/swap the frame buffer
+ 
+} // end of main loop
+```
+5. Handle mouse and keyboard events, and window size changes
+With Windows (and DirectX)
+Use TwEventWin when processing incoming events
+```C
+// In the Windows MessageProc callback
+LRESULT CALLBACK MessageProc(HWND wnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+    if( TwEventWin(wnd, msg, wParam, lParam) ) // send event message to AntTweakBar
+        return 0; // event has been handled by AntTweakBar
+    // else process the event message
+    // ...
+}
+```
+6. Terminate AntTweakBar
+Just before closing your graphic window and uninitializing the graphic API, call TwTerminate to uninitialize AntTweakBar
+```C
+// at the end of your program
+TwTerminate();
+// close your graphic window
+// exit your application
+```
+See this for more information:
+https://anttweakbar.sourceforge.io/doc/tools_anttweakbar_howto.html
+
 
 ### Original Readme.txt from AntTweakBar development library follows
 
